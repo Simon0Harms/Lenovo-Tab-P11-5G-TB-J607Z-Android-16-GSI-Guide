@@ -14,7 +14,8 @@ This guide documents the full process of flashing a Treble GSI running **Android
 - [Step 4 — Flash the GSI](#step-4--flash-the-gsi)
 - [Step 5 — Wipe Userdata (⚠️ known pitfall)](#step-5--wipe-userdata--known-pitfall)
 - [Step 6 — First Boot](#step-6--first-boot)
-- [Step 7 — Root with APatch](#step-7--root-with-apatch)
+- [Step 7 — Fix Alarms & Notifications](#step-7--fix-alarms--notifications)
+- [Step 8 — Root with APatch](#step-8--root-with-apatch)
 - [Known Issues & Fixes](#known-issues--fixes)
 - [Play Integrity / Root Hiding](#play-integrity--root-hiding)
 - [Restore Procedure](#restore-procedure)
@@ -169,7 +170,17 @@ If you ever get stuck in a bootloop *after* initial setup completes once success
 
 The first boot after wiping userdata can take 10–15 minutes. Do not interrupt it, even if it looks stuck on the boot animation.
 
-## Step 7 — Root with APatch
+## Step 7 — Fix Alarms & Notifications
+
+If alarms and/or notifications silently fail to play sound after the first boot, open the **Treble Settings App** (the "Treble" app, `com.libremobileos.treble.settings`) on the device:
+
+1. Go to **General**.
+2. Enable **"use alternative audio policy"**.
+3. Reboot the device.
+
+This works around the vendor audio HAL not routing alarm/notification streams correctly under this GSI.
+
+## Step 8 — Root with APatch
 
 `boot` is untouched by the GSI flash (only `system` is replaced), so if the device was already rooted with APatch before backup, the same `boot_a.img` from your backup already contains the kernel patch — you may not need to re-patch at all.
 
