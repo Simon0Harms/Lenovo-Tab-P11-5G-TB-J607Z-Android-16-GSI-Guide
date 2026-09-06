@@ -1,4 +1,4 @@
- Lenovo Tab P11 5G (TB-J607Z) — Android 16 GSI Guide
+Lenovo Tab P11 5G (TB-J607Z) — Android 16 GSI Guide
 
 This guide documents the full process of flashing a Treble GSI running **Android 16** (crDroid 12.11, Doze-off's `crdroid_gsi_treble` build) onto a **Lenovo Tab P11 5G (TB-J607Z)** — Snapdragon 750G/480, dynamic partitions, VNDK 30 (Android 11 stock), arm64_binder64-ab, Project Treble compliant.
 
@@ -14,7 +14,9 @@ This guide documents the full process of flashing a Treble GSI running **Android
 - [Step 4 — Flash the GSI](#step-4--flash-the-gsi)
 - [Step 5 — Wipe Userdata (⚠️ known pitfall)](#step-5--wipe-userdata--known-pitfall)
 - [Step 6 — First Boot](#step-6--first-boot)
-- [Step 7 — Fix Alarms & Notifications](#step-7--fix-alarms--notifications)
+- [Step 7 Fixes](#step-7-fixes)
+  - [Step 7a — Fix Alarms & Notifications](#step-7a--fix-alarms--notifications)
+  - [Step 7b — Fix SMS (IMS Features)](#step-7b--fix-sms-ims-features)
 - [Step 8 — Root with APatch](#step-8--root-with-apatch)
 - [Known Issues & Fixes](#known-issues--fixes)
 - [Play Integrity / Root Hiding](#play-integrity--root-hiding)
@@ -170,7 +172,9 @@ If you ever get stuck in a bootloop *after* initial setup completes once success
 
 The first boot after wiping userdata can take 10–15 minutes. Do not interrupt it, even if it looks stuck on the boot animation.
 
-## Step 7 — Fix Alarms & Notifications
+## Step 7 Fixes
+
+### Step 7a — Fix Alarms & Notifications
 
 If alarms and/or notifications silently fail to play sound after the first boot, open the **Treble Settings App** (the "Treble" app, `com.libremobileos.treble.settings`) on the device:
 
@@ -179,6 +183,16 @@ If alarms and/or notifications silently fail to play sound after the first boot,
 3. Reboot the device.
 
 This works around the vendor audio HAL not routing alarm/notification streams correctly under this GSI.
+
+### Step 7b — Fix SMS (IMS Features)
+
+If SMS does not work correctly after the first boot, open the **Treble Settings App** (`com.libremobileos.treble.settings`) on the device:
+
+1. Go to **IMS Features**.
+2. Enable **Create IMS APN**.
+3. Enable **Install IMS APK** (this downloads a required IMS component).
+4. Enable **Request IMS Network**.
+5. Reboot the device.
 
 ## Step 8 — Root with APatch
 
